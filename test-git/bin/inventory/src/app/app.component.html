@@ -1,0 +1,41 @@
+<div class="">
+    <mat-toolbar>
+        <span>My Application</span>
+        <span style="padding: 10px;" *ngIf="isAuthorized && !isEditor">
+            <button mat-flat-button >
+                Show Products
+            </button>
+        </span>
+        <span  style="padding: 10px;" *ngIf="isAdmin">
+            <button mat-flat-button [routerLink]="['admin', 'dashboard']">
+                Add Product
+            </button>
+        </span>
+
+        <span  style="padding: 10px;" *ngIf="isEditor">
+            <button mat-flat-button [routerLink]="['editor', 'dashboard']">
+                Manage Expences
+            </button>
+        </span>
+
+        <span class="example-spacer" *ngIf="!isAuthorized"></span>
+        <button mat-icon-button class="example-icon favorite-icon" 
+            aria-label="Example icon-button with heart icon" matTooltip="Login" [routerLink]="['login']"
+            *ngIf="!isAuthorized">
+            <mat-icon >login</mat-icon>
+        </button>
+
+        <span class="example-spacer" *ngIf="isAuthorized"></span>
+        <button mat-icon-button class="example-icon favorite-icon" 
+            aria-label="Example icon-button with heart icon" matTooltip="Logout" (click)="logout()"
+            *ngIf="isAuthorized">
+            <mat-icon >logout</mat-icon>
+        </button>
+        
+        
+    </mat-toolbar>
+    
+    <router-outlet></router-outlet>
+    
+    <p>Piyush</p>
+</div>

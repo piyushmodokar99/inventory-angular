@@ -1,0 +1,70 @@
+<form [formGroup]="updateForm" novalidate (ngSubmit)="onSubmit()">
+    <mat-card class="shipping-card">
+      <mat-card-header>
+        <mat-card-title>Update Product Details</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Product Code" formControlName="ipCode" required>
+              <mat-error *ngIf="updateForm.controls['ipCode'].hasError('required')">
+                Product code is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Product Name" formControlName="ipName" required>
+              <mat-error *ngIf="updateForm.controls['ipName'].hasError('required')">
+                Product name is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Product Brand" formControlName="ipBrand" required>
+              <mat-error *ngIf="updateForm.controls['ipBrand'].hasError('required')">
+                Product brand is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Product Price" formControlName="ipPrice" required>
+              <mat-error *ngIf="updateForm.controls['ipPrice'].hasError('required')">
+                Product price is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field class="full-width">
+              <mat-select placeholder="Product Type" formControlName="ipType" [(ngModel)]="selectedValue" selected="true" required>
+                <mat-option *ngFor="let pType of ipTypes" [value]="pType.abbreviation">
+                  {{ pType.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="updateForm.controls['ipType'].hasError('required')">
+                Product type is <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </mat-card-content>
+      <mat-card-actions style="text-align: end;">
+        <button mat-raised-button color="primary" type="submit" [disabled]="updateForm.invalid">Update</button>
+        <a href="/home/products" style="padding: 10px;"><button mat-raised-button color="primary" type="button" >Return to list</button></a>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

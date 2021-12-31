@@ -1,0 +1,136 @@
+<div class="row main-div" >
+    <div class="col">
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Update Product Details</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form [formGroup]="addForm" novalidate (ngSubmit)="addProduct()">
+                    <mat-accordion class="example-headers-align" style="background-color: aliceblue;"> 
+                        <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            Code Details
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            Type Product Code
+                            <mat-icon>account_circle</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                    
+                        <!--<mat-form-field>
+                            <mat-label>Product Code</mat-label>
+                            <input matInput>
+                        </mat-form-field>-->
+
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Product Code" formControlName="ipCode" required>
+                            <mat-error *ngIf="addForm.controls['ipCode'].hasError('required')">
+                              Product code is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    
+                        <mat-action-row>
+                            <button mat-button color="primary" type="button" (click)="nextStep()">Next</button>
+                        </mat-action-row>
+                        </mat-expansion-panel>
+                    
+                        <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            Product Details
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            Type product name and brand
+                            <mat-icon>map</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                    
+                        <!--<mat-form-field>
+                            <mat-label>Product Brand</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Product Name</mat-label>
+                            <input matInput>
+                        </mat-form-field>-->
+
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Product Name" formControlName="ipName" required>
+                            <mat-error *ngIf="addForm.controls['ipName'].hasError('required')">
+                              Product name is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Product Brand" formControlName="ipBrand" required>
+                            <mat-error *ngIf="addForm.controls['ipBrand'].hasError('required')">
+                              Product brand is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()" type="button">Previous</button>
+                            <button mat-button color="primary" (click)="nextStep()" type="button">Next</button>
+                        </mat-action-row>
+                        </mat-expansion-panel>
+                    
+                        <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                            Price Details
+                            </mat-panel-title>
+                            <mat-panel-description>
+                            Type product price and type
+                            <mat-icon>date_range</mat-icon>
+                            </mat-panel-description>
+                        </mat-expansion-panel-header>
+                    
+                        <!--<mat-form-field>
+                            <mat-label>Date</mat-label>
+                            <input matInput [matDatepicker]="picker" (focus)="picker.open()" readonly>
+                        </mat-form-field>
+                        <mat-datepicker #picker></mat-datepicker>-->
+
+                        <!--<mat-form-field>
+                            <mat-label>Product Price</mat-label>
+                            <input matInput>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <mat-label>Product Type</mat-label>
+                            <input matInput>
+                        </mat-form-field>-->
+
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Product Price" formControlName="ipPrice" required>
+                            <mat-error *ngIf="addForm.controls['ipPrice'].hasError('required')">
+                              Product price is <strong>required</strong>
+                            </mat-error>
+                        </mat-form-field>
+                    
+                        <mat-form-field class="full-width">
+                            <mat-select placeholder="Product Type" formControlName="ipType" required>
+                              <mat-option *ngFor="let pType of ipTypes" [value]="pType.abbreviation">
+                                {{ pType.name }}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="addForm.controls['ipType'].hasError('required')">
+                              Product type is <strong>required</strong>
+                            </mat-error>
+                          </mat-form-field>
+
+                        <mat-action-row>
+                            <button mat-button color="warn" (click)="prevStep()" type="button">Previous</button>
+                            <button mat-button color="primary" type="submit">Add Product</button>
+                        </mat-action-row>
+                        </mat-expansion-panel>
+                    
+                    </mat-accordion>
+                </form>
+            </mat-card-content>
+            <p *ngIf = "isProductAdded">Product added</p>
+        </mat-card>
+    </div>
+</div>
